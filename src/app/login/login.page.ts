@@ -19,13 +19,13 @@ export class LoginPage {
 
   onLogin() {
     if (this.loginForm.valid) {
-      // Aquí puedes agregar lógica para autenticar al usuario
-      this.router.navigate(['/home']); // Redirige a la página de inicio
+      localStorage.setItem('userName', this.loginForm.value.username);
+      this.router.navigate(['/home']);
     }
   }
 
   navigateToResetPassword() {
-    this.router.navigate(['/reset-password']); // Redirige a la página de restablecimiento de contraseña
+    this.router.navigate(['/reset-password']);
   }
 }
 

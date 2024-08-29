@@ -1,19 +1,47 @@
-/* Estilos específicos para la página de inicio */
-
-ion-card {
-  margin: 10px 0;
+ion-header {
+  background-color: #488aff;
+  color: #fff;
 }
 
-ion-item {
-  --padding-start: 10px;
-  --inner-padding-end: 10px;
+ion-toolbar {
+  --background: #3880ff;
+  --color: white;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #3880ff;
+  font-size: 1.5rem;
+}
+
+ion-card {
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+ion-card:hover {
+  transform: translateY(-10px);
 }
 
 ion-button {
   margin-top: 20px;
+  --background: #3880ff;
 }
+
+ion-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+ion-buttons {
+  padding-right: 10px;
+}
+
+ion-item {
+  --background: #f0f0f5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+

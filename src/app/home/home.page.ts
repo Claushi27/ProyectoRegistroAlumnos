@@ -7,23 +7,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  userName: string = '';  // Define userName
-  upcomingEvents: { title: string, date: Date }[] = [];  // Define upcomingEvents
+  userName: string = '';
+  subjects: { title: string, registered: Date | null }[] = [];
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // Initialize userName and upcomingEvents here or fetch from a service
-    this.userName = 'Juan Pérez';  // Example static value
-    this.upcomingEvents = [
-      { title: 'Evento 1', date: new Date('2024-09-01') },
-      { title: 'Evento 2', date: new Date('2024-09-10') }
+    const storedUserName = localStorage.getItem('userName');
+    this.userName = storedUserName ? storedUserName : 'Usuario';
+    this.subjects = [
+      { title: 'Clase de Matemáticas', registered: null },
+      { title: 'Clase de Lenguaje', registered: null },
+      { title: 'Clase de Historia', registered: null }
     ];
   }
 
+  registerAttendance(selectedSubject: { title: string, registered: Date | null }) {
+    // Simular acceso a la cámara y registro de asistencia
+    selectedSubject.registered = new Date(); // Hora actual como hora ficticia de registro
+    alert(`Asistencia para ${selectedSubject.title} registrada a las ${selectedSubject.registered.toLocaleTimeString()}`);
+  }
+
   handleLogout() {
-    // Implement logout logic
-    console.log('User logged out');
-    this.router.navigate(['/login']);  // Redirect to login page
+    localStorage.removeItem('userName');
+    this.router.navigate(['/login']);
   }
 }
+
+

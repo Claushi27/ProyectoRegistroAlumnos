@@ -17,10 +17,11 @@
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
-          <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
+          <ion-button expand="full" type="submit" [disabled]="!loginForm.valid" [routerLink]="'/home'">Iniciar Sesión</ion-button>
         </form>
         <ion-button expand="full" (click)="navigateToResetPassword()">¿Olvidaste tu contraseña?</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+

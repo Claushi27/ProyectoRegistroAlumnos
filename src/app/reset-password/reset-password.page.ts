@@ -18,9 +18,7 @@ export class ResetPasswordPage {
 
   onResetPassword() {
     if (this.resetPasswordForm.valid) {
-      // Aquí puedes agregar lógica para enviar una solicitud de recuperación de contraseña
-      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+      this.router.navigate(['/login']);
     }
   }
 }
-

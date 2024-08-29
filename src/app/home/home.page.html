@@ -1,6 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/login']">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span *ngIf="!userName">Iniciar Sesión</span>
+        <span *ngIf="userName">Perfil</span>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,15 +18,16 @@
         <h1>Bienvenido, {{ userName }}!</h1>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Próximos Eventos</ion-card-title>
+            <ion-card-title>Clases Disponibles</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let event of upcomingEvents">
+              <ion-item *ngFor="let subject of subjects">
                 <ion-label>
-                  <h2>{{ event.title }}</h2>
-                  <p>{{ event.date | date:'longDate' }}</p>
+                  <h2>{{ subject.title }}</h2>
+                  <p *ngIf="subject.registered">Asistencia registrada: {{ subject.registered | date:'shortTime' }}</p>
                 </ion-label>
+                <ion-button slot="end" (click)="registerAttendance(subject)" [disabled]="subject.registered">Registrar Asistencia</ion-button>
               </ion-item>
             </ion-list>
           </ion-card-content>
