@@ -6,4 +6,11 @@ const config: CapacitorConfig = {
   webDir: 'www'
 };
 
-export default config;
+// capacitor.config.ts
+export default {
+  appId: 'com.example.app',
+  appName: 'ProyectoAlumnos',
+  webDir: 'www',
+  bundledWebRuntime: false
+};
+

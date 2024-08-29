@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +23,16 @@ export class HomePage implements OnInit {
     ];
   }
 
-  registerAttendance(selectedSubject: { title: string, registered: Date | null }) {
-    // Simular acceso a la cámara y registro de asistencia
+  async registerAttendance(selectedSubject: { title: string, registered: Date | null }) {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri
+    });
+
+    // Simular registro de asistencia usando la imagen
     selectedSubject.registered = new Date(); // Hora actual como hora ficticia de registro
-    alert(`Asistencia para ${selectedSubject.title} registrada a las ${selectedSubject.registered.toLocaleTimeString()}`);
+    alert(`Asistencia para ${selectedSubject.title} registrada a las ${selectedSubject.registered.toLocaleTimeString()} con foto`);
   }
 
   handleLogout() {
@@ -33,5 +40,6 @@ export class HomePage implements OnInit {
     this.router.navigate(['/login']);
   }
 }
+
 
 
