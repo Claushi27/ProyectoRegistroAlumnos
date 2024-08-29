@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage {
-  username: string = '';
+  resetPasswordForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.resetPasswordForm = this.fb.group({
+      username: ['', Validators.required]
+    });
+  }
 
-  onReset() {
-    // Aquí iría la lógica para recuperar la contraseña
-    console.log('Nombre de Usuario:', this.username);
-    // Redirigir a la página de ingreso
-    this.router.navigate(['/login']);
+  onResetPassword() {
+    if (this.resetPasswordForm.valid) {
+      // Aquí puedes agregar lógica para enviar una solicitud de recuperación de contraseña
+      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+    }
   }
 }
+

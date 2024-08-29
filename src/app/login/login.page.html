@@ -1,27 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ingreso</ion-title>
+    <ion-title>Inicio de Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Iniciar Sesión</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <ion-item>
-          <ion-label position="floating">Nombre de Usuario</ion-label>
-          <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
-        </ion-item>
-        <ion-button expand="full" type="submit">Ingresar</ion-button>
-        <ion-button expand="full" color="light" (click)="navigateToReset()">Restablecer Contraseña</ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <ion-item>
+            <ion-label position="floating">Nombre de Usuario</ion-label>
+            <ion-input formControlName="username" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+          <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
+        </form>
+        <ion-button expand="full" (click)="navigateToResetPassword()">¿Olvidaste tu contraseña?</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
