@@ -8,7 +8,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPage },
   { path: 'reset-password', component: ResetPasswordPage },
-  { path: 'home', component: HomePage }
+  { path: 'home', component: HomePage },
+  { 
+   path: '', 
+   redirectTo: 'home',
+   pathMatch: 'full'
+  }
 ];
 
 @NgModule({
