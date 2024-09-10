@@ -17,7 +17,7 @@ h1 {
 
 ion-card {
   margin: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(17, 16, 16, 0.337);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -32,7 +32,7 @@ ion-button {
 
 ion-icon {
   font-size: 1.5rem;
-  color: white;
+  color: rgb(232, 227, 227);
 }
 
 ion-buttons {
@@ -40,7 +40,7 @@ ion-buttons {
 }
 
 ion-item {
-  --background: #f0f0f5;
+  --background: #1c1b1b;
   border-radius: 8px;
   margin-bottom: 8px;
 }
