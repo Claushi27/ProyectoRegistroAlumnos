@@ -13,7 +13,14 @@ export class LoginPage {
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: [
+        '', 
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/) // Letras y números
+        ]
+      ]
     });
   }
 
@@ -28,4 +35,3 @@ export class LoginPage {
     this.router.navigate(['/reset-password']);
   }
 }
-
