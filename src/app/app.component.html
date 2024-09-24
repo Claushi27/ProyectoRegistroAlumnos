@@ -3,18 +3,26 @@
   <ion-menu side="start" menuId="menuPrincipal" contentId="main">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Menú Principal</ion-title>
+        <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>Alumnos</ion-item>
         <ion-item>
-          <ion-button (clik)="navegarDocente()">Profesores</ion-button>
+        <ion-button (clik)="navegarDocente()">Alumnos</ion-button>
         </ion-item>
-        <ion-item>Asistentes de la educación</ion-item>
-        <ion-item>Inspectores</ion-item>
-        <ion-item>Directivos</ion-item>
+        <ion-item>
+        <ion-button (clik)="navegarDocente()">Profesores</ion-button>
+        </ion-item>
+        <ion-item>
+        <ion-button (clik)="navegarDocente()">Asistentes de la educación</ion-button>
+        </ion-item>
+        <ion-item>
+        <ion-button (clik)="navegarDocente()">Inspectores</ion-button>
+        </ion-item>
+        <ion-item>
+        <ion-button (clik)="navegarDocente()">Directivos</ion-button>
+        </ion-item>
       </ion-list> 
     </ion-content>
   </ion-menu>
