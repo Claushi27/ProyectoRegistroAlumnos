@@ -14,6 +14,10 @@ const routes: Routes = [
    path: '', 
    redirectTo: 'home',
    pathMatch: 'full'
+  },
+  {
+    path: 'e404',
+    loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
   }
 ];
 
