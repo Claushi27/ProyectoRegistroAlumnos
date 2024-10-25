@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
-import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,8 +14,7 @@ const routes: Routes = [
    path: '', 
    redirectTo: 'home',
    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
+  }
 ];
 
 @NgModule({
