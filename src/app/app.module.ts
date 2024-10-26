@@ -8,6 +8,7 @@ import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
 import { HomePage } from './home/home.page';
 import { RouteReuseStrategy, RouterModule } from '@angular/router'; // Importa RouteReuseStrategy aquí
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,8 @@ import { RouteReuseStrategy, RouterModule } from '@angular/router'; // Importa R
     ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    RouterModule
-  ],
+    RouterModule,
+    IonicStorageModule.forRoot()],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy } // Usa IonicRouteStrategy aquí
   ],
