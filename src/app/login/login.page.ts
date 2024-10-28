@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +10,11 @@ import { Storage } from '@ionic/storage-angular';
 export class LoginPage {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private storage: Storage) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: [
-        '', 
+        '',
         [
           Validators.required,
           Validators.minLength(5),
@@ -24,21 +23,25 @@ export class LoginPage {
       ]
     });
   }
-  async ngOnInit() {
-    await this.storage.create();
-  }
 
   onLogin() {
     if (this.loginForm.valid) {
-      localStorage.setItem('userName', this.loginForm.value.username);
+      const username = this.loginForm.value.username;
+      const password = this.loginForm.value.password;
+
+      // Guarda el nombre de usuario y la contraseña en localStorage
+      localStorage.setItem(username, password);
+
+      // Navega al home después de iniciar sesión
       this.router.navigate(['/home']);
+    } else {
+      alert('Por favor, completa todos los campos requeridos.');
     }
   }
 
   navigateToResetPassword() {
     this.router.navigate(['/reset-password']);
-  //guardar informacion en el Storage
-    this.storage.set("userName", "andres")
-
   }
 }
+
+

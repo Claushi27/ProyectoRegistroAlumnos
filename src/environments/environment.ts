@@ -1,10 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://api.qrserver.com/v1/read-qr-code/' // URL de la API para leer códigos QR
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

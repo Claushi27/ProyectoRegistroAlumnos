@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Plugins } from '@capacitor/core';
+const { BarcodeScanner, Permissions } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomePage implements OnInit {
   userName: string = '';
   subjects: { title: string, registered: Date | null }[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     const storedUserName = localStorage.getItem('userName');
@@ -23,16 +24,33 @@ export class HomePage implements OnInit {
     ];
   }
 
-  async registerAttendance(selectedSubject: { title: string, registered: Date | null }) {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Uri
-    });
+  async checkPermissions() {
+    const status = await Permissions.query({ name: 'camera' });
+    if (status.state !== 'granted') {
+      await Permissions.request({ name: 'camera' });
+    }
+  }
 
-    // Simular registro de asistencia usando la imagen
-    selectedSubject.registered = new Date(); // Hora actual como hora ficticia de registro
-    alert(`Asistencia para ${selectedSubject.title} registrada a las ${selectedSubject.registered.toLocaleTimeString()} con foto`);
+  async registerAttendance(selectedSubject: { title: string, registered: Date | null }) {
+    try {
+      await this.checkPermissions(); // Aquí llamas a la función para verificar permisos
+      const isAvailable = await BarcodeScanner.checkAvailability();
+      if (!isAvailable) {
+        alert('El escáner de códigos de barras no está disponible.');
+        return;
+      }
+      const result = await BarcodeScanner.startScan();
+      if (result.hasContent) {
+        const decodedText = result.content;
+        selectedSubject.registered = new Date();
+        alert(`Asistencia para ${selectedSubject.title} registrada a las ${selectedSubject.registered.toLocaleTimeString()} con el código QR: ${decodedText}`);
+      } else {
+        alert('No se pudo decodificar el código QR.');
+      }
+    } catch (error) {
+      console.error('Error al leer el código QR:', error);
+      alert('No se pudo escanear el código QR. Intenta nuevamente.');
+    }
   }
 
   handleLogout() {

@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
 import { HomePage } from './home/home.page';
-import { RouteReuseStrategy, RouterModule } from '@angular/router'; // Importa RouteReuseStrategy aquí
-import { IonicStorageModule } from '@ionic/storage-angular';
+import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+import { QrScannerService } from './qr-scanner.service'; // Importar el servicio QR
 
 @NgModule({
   declarations: [
@@ -23,10 +24,13 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     IonicModule.forRoot(),
     AppRoutingModule,
     RouterModule,
-    IonicStorageModule.forRoot()],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy } // Usa IonicRouteStrategy aquí
+    HttpClientModule // Agregar HttpClientModule aquí
   ],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    QrScannerService // Registrar el servicio QR
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Permitir el uso de elementos personalizados
 })
 export class AppModule {}

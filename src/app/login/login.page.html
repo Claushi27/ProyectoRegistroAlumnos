@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>RegistrAPP</ion-title>
+    <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,42 +9,25 @@
     <ion-row>
       <ion-col>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <!-- Campo de nombre de usuario -->
           <ion-item>
             <ion-label position="floating">Nombre de Usuario</ion-label>
             <ion-input formControlName="username" type="text"></ion-input>
           </ion-item>
-          <div *ngIf="loginForm.controls['username'].errors?.['required'] && loginForm.controls['username'].touched">
-            El nombre de usuario es obligatorio.
-          </div>
 
-          <!-- Campo de contraseña -->
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
-          <div *ngIf="loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched">
-            La contraseña es obligatoria.
-          </div>
-          <div *ngIf="loginForm.controls['password'].errors?.['minlength'] && loginForm.controls['password'].touched">
-            La contraseña debe tener al menos 5 caracteres.
-          </div>
-          <div *ngIf="loginForm.controls['password'].errors?.['pattern'] && loginForm.controls['password'].touched">
-            La contraseña debe contener al menos una letra y un número.
-          </div>
 
-          <!-- Botón de inicio de sesión -->
           <ion-button expand="full" type="submit" [disabled]="!loginForm.valid">
             Iniciar Sesión
           </ion-button>
-        </form>
 
-        <!-- Enlace para restablecer la contraseña -->
-        <ion-button expand="full" (click)="navigateToResetPassword()">
-          ¿Olvidaste tu contraseña?
-        </ion-button>
+          <ion-button expand="full" (click)="navigateToResetPassword()">
+            Olvidé mi Contraseña
+          </ion-button>
+        </form>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
