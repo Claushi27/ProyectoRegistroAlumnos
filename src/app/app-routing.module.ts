@@ -3,17 +3,31 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
+import { DbService } from './services/db.service';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', 
+    redirectTo: 'login', 
+    pathMatch: 'full' 
+  },
+  { path: 'login',
+    redirectTo: 'login', 
+    pathMatch: 'full' 
+  },
 
-  { path: 'login', component: LoginPage },
+  { path: 'login', 
+    component: LoginPage 
+  },
 
-  { path: 'reset-password', component: ResetPasswordPage },
+  { path: 'reset-password', 
+    component: ResetPasswordPage 
+  },
 
-  { path: 'home', component: HomePage },
+  { path: 'home',
+    component: HomePage,
+    canActivate: [DbService]
+  },
 
   { 
    path: '**', 
