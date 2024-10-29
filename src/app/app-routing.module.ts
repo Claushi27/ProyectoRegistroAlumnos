@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
-import { DbService } from './services/db.service';
+
 
 
 const routes: Routes = [
@@ -26,7 +26,7 @@ const routes: Routes = [
 
   { path: 'home',
     component: HomePage,
-    canActivate: [DbService]
+  
   },
 
   { 
