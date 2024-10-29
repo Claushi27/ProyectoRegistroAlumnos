@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
-
+import { AuthGuard} from './guards/guard.guard';
 
 
 const routes: Routes = [
@@ -21,12 +20,13 @@ const routes: Routes = [
   },
 
   { path: 'reset-password', 
-    component: ResetPasswordPage 
+    component: ResetPasswordPage,
   },
 
   { path: 'home',
-    component: HomePage,
-  
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    
   },
 
   { 

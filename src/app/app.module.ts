@@ -6,16 +6,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginPage } from './login/login.page';
 import { ResetPasswordPage } from './reset-password/reset-password.page';
-import { HomePage } from './home/home.page';
 import { RouteReuseStrategy, RouterModule } from '@angular/router'; // Importa RouteReuseStrategy aquí
 import { IonicStorageModule } from '@ionic/storage-angular';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPage,
-    ResetPasswordPage,
-    HomePage
+    ResetPasswordPage
   ],
   imports: [
     BrowserModule,
